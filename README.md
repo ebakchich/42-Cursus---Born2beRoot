@@ -56,10 +56,43 @@ password        requisite                       pam_pwquality.so retry=3 minlen=
 
 **difok** = the minimum number of characters that must be different from the old password.
 Configuring sudo
-- [x] After setting up your configuration files, you will have to change
+- After setting up your configuration files, you will have to change
 all the passwords of the accounts present on the virtual machine,
 including the root account.
  #### 3 : Configuring sudo.
  To set up a strong configuration for your sudo group, you have to comply with the
 following requirements:
+```
+apt install sudo
+```
+Open file **sudoers** using vim.
+```
+vim /etc/sudoers
+```
 - Authentication using sudo has to be limited to 3 attempts in the event of an incorrect password.
+go to line 12 and add the line below.
+```
+Defaults     passwd_tries=3
+```
+- A custom message of your choice has to be displayed if an error due to a wrong
+password occurs when using sudo.
+go to line 13 and add the line below.
+```
+Defaults     badpass_message="Password is wrong, please try again!"
+```
+- Each action using sudo has to be archived, both inputs and outputs. The log file
+has to be saved in the /var/log/sudo/ folder.
+First, create a file, name it as you like with the extension .log
+```
+touch /var/log/sudo/arv.log
+```
+Then
+```
+vim /etc/sudoers
+```
+go to line 13 and add the line below.
+```
+Defaults	logfile="/var/log/sudo/arv.log"
+Defaults	log_input,log_output
+```
+- The TTY mode has to be enabled for security reasons.
