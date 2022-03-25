@@ -20,7 +20,7 @@ vim /etc/login.defs
 ```
 For password expiration every 30 days, go to line 160 and edit it.
 ```
-160 PASS_MAX_DAYS   30
+PASS_MAX_DAYS   30
 ```
 To set minimum number of days between password changes to 2 days, go to line 161 and edit it.
 ```
@@ -38,7 +38,7 @@ Open file **common-password** using vim.
 ```
 vim /etc/pam.d/common-password
 ```
-go to line 25 and edit modify it as in the example below.
+go to line 25 and modify it as in the example below.
 ```
 password        requisite                       pam_pwquality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username enforce_for_root difok=7
 ```
@@ -90,9 +90,19 @@ Then
 ```
 vim /etc/sudoers
 ```
-go to line 13 and add the line below.
+go to line 14 and add the line below.
 ```
 Defaults	logfile="/var/log/sudo/arv.log"
 Defaults	log_input,log_output
 ```
 - The TTY mode has to be enabled for security reasons.
+go to line 16 and add the line below.
+```
+Defaults        requiretty
+```
+- For security reasons too, the paths that can be used by sudo must be restricted.
+go to line 11 and modify it as in the example below.
+```
+Defaults   secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+```
+- Finally, you have to create a simple script called monitoring.sh. It must be developed in bash.
