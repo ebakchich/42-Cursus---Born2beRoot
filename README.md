@@ -255,5 +255,5 @@ ufw delete 1
 ufw delete 2
 ```
 - Connecting SSH server.
-- 
+![This is an image](https://blogger.googleusercontent.com/img/a/AVvXsEhcuPR0w6MTrBYCOqkcoKGliHa3SIXzp_XjLFoYu5dFXFMk5dyDxBSu47v4kcrYVhEXAJYw5kwUIQ0maAYkda1Q8n1PrFYB0MwreI9iaQTbO232EaKQxyclOzBATQ7bSLs3Dr7qV0wes7Jqb8aVLwagXYMtEpTKD7BGgomjaEAtb6uKoKTOgu5mtld1Og)
 ># Bonus part
