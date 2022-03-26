@@ -105,6 +105,25 @@ go to line 11 and modify it as in the example below.
 ```
 Defaults   secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 ```
+- In addition to the root user, a user with your login as username has to be present.
+```
+visudo
+```
+add the line below.
+```
+user_name ALL=(ALL) ALL
+```
+- This user has to belong to the user42 and sudo groups.
+```
+groupadd user42
+```
+add user to the user42 and sudo groups.
+```
+getent group sudo
+```
+```
+getent group user42
+```
 Finally, you have to create a simple script called monitoring.sh. It must be developed in bash.
 At server startup, the script will display some information (listed below) on all terminals every 10 minutes (take a look at wall). The banner is optional. No error must
 be visible.
