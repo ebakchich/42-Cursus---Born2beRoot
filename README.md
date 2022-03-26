@@ -242,4 +242,18 @@ ufw allow ssh
 ```
 ufw allow 4242
 ```
+Deleting UFW Rules By rule number.
+```
+ufw status numbered
+```
+![This is an image](https://blogger.googleusercontent.com/img/a/AVvXsEh-wXgFfnGxCw5CfzsvusVR0vmUAyhzvYcV4xYGW1w2m667uYhDCRzg-ntYwtoovGdYB7KQyYKXfk-WA8Cj-qXoVXHlvb5rO1K9XjFCCQqpX5ncMpP2fyIr2IbmbmLtybLU48kcujcICCyifWD8b-h58MNUvwQR49hNwkOeaof9SRjYrqHc3gLkbYEIeg)
+delete the rules number 1 and 2.
+```
+ufw delete 1
+```
+```
+ufw delete 2
+```
+- Connecting SSH server.
+- 
 ># Bonus part
