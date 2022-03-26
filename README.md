@@ -119,10 +119,10 @@ groupadd user42
 ```
 add user to the user42 and sudo groups.
 ```
-getent group sudo
+usermod -aG sudo user_name
 ```
 ```
-getent group user42
+usermod -aG user42 user_name
 ```
 Finally, you have to create a simple script called monitoring.sh. It must be developed in bash.
 At server startup, the script will display some information (listed below) on all terminals every 10 minutes (take a look at wall). The banner is optional. No error must
@@ -204,3 +204,42 @@ Add at end as follows: (*/10 means every 10 mins the script will show)
 ```
 */10 * * * * /usr/local/bin/monitoring.sh
 ```
+- SSH & UFW
+A SSH service will be running on port 4242 only. For security reasons, it must not be
+possible to connect using SSH as root
+```
+apt install openssh-server
+```
+Changing default port (22) to 4242
+```
+vim /etc/ssh/sshd_config
+```
+Edit the file, change the line #Port22 to Port 4242.
+Go to line 15 and edit it.
+```
+Port 4242
+```
+It must not be possible to connect using SSH as root.
+change line 34.
+```
+PermitRootLogin no
+```
+Restart the SSH service.
+```
+service ssh restart
+```
+Install UFW
+```
+apt-get install ufw
+```
+```
+ufw enable
+```
+Configure the rules
+```
+ufw allow ssh
+```
+```
+ufw allow 4242
+```
+># Bonus part
