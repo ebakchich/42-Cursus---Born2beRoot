@@ -257,3 +257,51 @@ ufw delete 2
 - Connecting SSH server.
 ![This is an image](https://blogger.googleusercontent.com/img/a/AVvXsEgRRTFZwRRR5jwgqLUpVHf1XPBmB0GPXzMZYdddmsCgAkgE5yIGQEuZDDSZCok8RBy3nF4Pb_0Og-rc2mdaT5dt7x1T-HsG6bavyxdqgC3PZ6lk2VIWWw2bo9nuiuJHehp73OgtjFNhFH66I1UBY3yH35kC4lzKHBppI6JwhkFjVR3mAh7SpKq5l3Og0A)
 ># Bonus part
+- Install PHP
+- Step 1: Add Surý APT repository to Debian
+The DEB.SURY.ORG repository is a home for packaging various software into Debian and Ubuntu based Linux distributions. It contains the latest binary builds of PHP 8.1. The repository has to be added manually on the system.
+
+Install required temporary packages:
+```
+apt install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
+```
+Add Surý Debian PPA repository to your Debian system.
+```
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/sury-php.list
+```
+Import packages signing GPG key;
+```
+wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
+```
+- Step 2: Install PHP 8.1
+Once you’ve added the repository and is confirmed to be functional, we can proceed with the installation of PHP 8.1 o Debian 11/10/9 Linux system.
+```
+apt update 
+```
+```
+apt install php8.1
+```
+Install PHP 8.1 Extensions
+```
+apt install php8.1-{bcmath,fpm,xml,mysql,zip,intl,ldap,gd,cli,bz2,curl,mbstring,pgsql,opcache,soap,cgi}
+```
+Once the installation is completed,  the Apache web server also installed automatically along with PHP. So, you will need to remove the Apache package from your system.
+First, stop the Apache service with the following command:
+```
+systemctl stop apache2
+```
+```
+systemctl disable apache2
+```
+Next, remove the Apache package with the following command:
+```
+apt-get remove apache2  -y
+```
+- How to Set Up Lighttpd Web Server on Ubuntu.
+```
+apt-get update -y
+```
+Once the installation is completed, check the status of Lighttpd with the following command:
+```
+systemctl status lighttpd
+```
